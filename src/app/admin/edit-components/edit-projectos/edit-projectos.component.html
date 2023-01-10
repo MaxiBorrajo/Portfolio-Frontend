@@ -1,0 +1,85 @@
+<!-- Contenedor principal -->
+<div class="container">
+    <!-- Primer contenedor secundario -->
+    <div class="seccion">
+        <h1 class="primary-font">Agregar nuevo projecto</h1>
+        <!-- Formulario -->
+        <div class="formulario">
+            <form [formGroup]="projectForm" (ngSubmit)="formSubmit($event, 'project', projectForm, projects)"
+            class="project">
+                <div class="field row1 col1">
+                    <label for="name" class="primary-font">Nombre del proyecto</label>
+                    <input type="text" formControlName="name" name="name">
+                </div>
+                <div class="field row1 col2">
+                    <label for="end_date" class="primary-font">Fecha de finalización</label>
+                    <input type="text" formControlName="end_date" name="end_date">
+                </div>
+                <div class="field row2 col1">
+                    <label for="link_page" class="primary-font">Link del proyecto</label>
+                    <input type="text" formControlName="link_page" name="link_page">
+                </div>
+                <div class="field row2 col2">
+                    <label for="link_git" class="primary-font">Link de Github</label>
+                    <input type="text" formControlName="link_git" name="link_git">
+                </div>
+                <div class="field row3 col13">
+                    <label for="description" class="primary-font">Descripcción</label>
+                    <textarea name="description"rows="3" type="text" formControlName="description"></textarea>
+                </div>
+                <button type="submit" class="btn secondary-font row4 col1">Subir</button>
+            </form>  
+        </div>
+    </div>
+    <!-- Secundario contenedor secundario -->
+    <div class="seccion">
+        <h1 class="primary-font">Proyectos que he realizado o colaborado</h1>
+        <div *ngFor="let project of projects">
+            <div *ngIf="projects != []">
+                <!-- Cabecera -->
+                <div class="header">
+                    <h2 class="primary-font">{{project.name}}</h2>
+                    <!-- Contenedor de botones -->
+                    <div class="botones">
+                        <button class="btn-header"
+                        routerLink="edit-project/{{project.id_proyecto}}">
+                            <fa-icon [icon]="faPenToSquare"></fa-icon>
+                        </button>
+                        <button class="btn-header"
+                        (click)="deleteProject('project', project.id_proyecto)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </button>
+                    </div>
+                </div>
+                <h3 class="secondary-font">{{project.description}}</h3>
+                <h4 class="secondary-font">Fecha de finalización: {{project.end_date}}</h4>
+                <div *ngIf="imgsProject(project.id_proyecto, images).length == 0;else imagen">
+                    <p class="secondary-font color2">Para agregar imagenes al proyecto, apreta el boton de editar<p>
+                </div>
+                <ng-template #imagen>
+                    <!-- Contenedor de imagenes -->
+                    <div class="grid">
+                        <!-- Contenedor de imagen -->
+                        <div
+                        *ngFor="let photo of imgsProject(project.id_proyecto, images)">
+                        <a [href]="photo.link" target="_blank" rel="noopener noreferrer">
+                            <img [src]="photo.link" class="img"
+                            title="Ver imagen">
+                        </a>
+                        </div>
+                    </div>
+                </ng-template>
+                <!-- Separador -->
+                <div class="divider flex-center">
+                    <div class="lines">
+                        <div class="square"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+

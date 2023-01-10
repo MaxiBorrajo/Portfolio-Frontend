@@ -1,0 +1,300 @@
+//Estilos de contenedores, botones e imagenes
+.container{
+    flex-direction: column;
+    height: auto;
+    padding: 100px 50px;
+    row-gap: 50px;
+    background: var(--primary-color);
+}
+
+.seccion{
+    background: none;
+    border-width: 20px;
+    border-style: solid;
+    border-image:linear-gradient(-40deg,
+                    var(--third-color) 10%, 
+                    transparent 20% 80%,
+                    var(--fourth-color) 90%
+                ) 1;
+}
+
+.info-user{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1.5fr 1fr 0.5fr;
+    gap:20px;
+}
+
+.with-image{
+    grid-template-rows: 30% 30% 30% 10%;
+    row-gap: 0;
+}
+
+.exp-user{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 0.5fr;
+    column-gap: 20px;
+}
+
+.edu-user{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 20px;
+}
+
+.skill{
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 20px;
+}
+
+.skill .btn{
+    width: 20%;
+}
+
+.formulario, .presentacion{
+    width: 100%;
+    height: 100%;
+}
+
+input,textarea{
+    width: 100%;
+    border: none;
+    background: none;
+    border: 1.5px solid var(--fourth-color);
+    outline: none;
+    color: var(--secondary-color);
+    font-size: 18px;
+    font-family: 'Nunito', sans-serif;
+    border-radius: 25px;
+    padding: 8px;
+}
+
+.field{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.header, .botones{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header{
+    margin: 20px 0 0 0;
+}
+
+.botones{
+    column-gap: 10px;
+    align-items: flex-start;
+    margin-top: 0.9%;
+}
+
+.btn{
+    padding: 5px 0;
+    border-radius: 7px;
+    width: 40%;
+    height: 70%;
+    margin-top: 20px;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.img{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    position: relative;
+    border: 2px solid var(--fourth-color);
+}
+
+.img-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100%;
+    column-gap: 20px;
+    width: 100%;
+}
+
+.img-info{
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.btn-x{
+    border: none;
+    background:none;
+    outline: none;
+    color: var(--third-color);
+    font-size: 20px;
+    font-weight: 600;
+    cursor:pointer;
+    position: absolute;
+    top:3%;
+    right: 1.5%;
+}
+
+.btn-header{
+    border: none;
+    background:none;
+    outline: none;
+    color: var(--third-color);
+    font-size: 20px;
+    font-weight: 600;
+    cursor:pointer;
+}
+
+.xMark{
+    color: var(--third-color);
+    opacity: 50%;
+}
+
+.xMark:hover{
+    opacity: 100%;
+}
+
+.brand{
+    width:15%;
+    margin: 0 0 2.5% 0;
+}
+
+.inst{
+    display: flex;
+    width: 100%;
+    column-gap: 20px;
+    align-items: center;
+}
+
+.divider{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.lines{
+    width: 90%;
+    position: relative;
+}
+
+.lines::after,.lines::before{
+    content: "";
+    position: absolute;
+    margin: auto;
+    height: 2px;
+    width: 45%;
+    top:45%
+}
+
+.square{
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid var(--third-color);
+    border-left: 2px solid var(--fourth-color);
+    border-bottom: 2px solid var(--fourth-color);
+    border-right: 2px solid var(--third-color);
+    left: 0;
+    top:0;
+    right:0;
+    bottom: 0;
+    margin: auto;
+    transform: rotate(45deg);
+}
+
+.lines::after{
+    left: 0;
+    background: var(--fourth-color);
+}
+
+.lines::before{
+    right:0;
+    background: var(--third-color);
+}
+
+
+//Estilos de texto
+h1, h2, h3, h4, label{
+    color: var(--secondary-color);
+}
+
+label{
+    margin-bottom: 5px;
+    margin-left: 15px;
+
+}
+
+h1, h2, label{
+    font-weight: 500;
+}
+
+h1{
+    font-size: 35px;
+}
+
+h2{
+    font-size: 20px;
+}
+
+h3{
+    font-size: 17px;
+}
+
+h4{
+    font-size: 14px;
+}
+
+h3, h4{
+    font-weight: 100;
+}
+
+//Estilos responsive design
+@media screen and (max-width: 841px){
+    .container{
+        padding:50px!important;
+    }
+
+    .seccion{
+        border-width: 10px!important;
+    }
+
+    .info-user{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 5px!important;
+    }
+    .img-container, .with-image, .exp-user, .edu-user, .skill{
+        display: flex!important;
+        flex-direction: column;
+        justify-content: center;
+        row-gap: 5px;
+        align-items: center;
+    }
+
+    .skill .btn{
+        width: 40%!important;
+    }
+
+    .header{
+        flex-direction: column;
+    }
+
+    .botones{
+        justify-content: flex-start!important;
+    }
+
+    .inst{
+        flex-direction: column;
+    }
+
+    .brand{
+        width: 100%!important;
+    }
+
+    .lines::after,.lines::before{
+        width: 30%!important;
+    }
+
+}

@@ -1,0 +1,25 @@
+<!-- Contenedor principal -->
+<div class="container flex-center" [ngClass]="{'container2' : projects.length > 0}">
+    <!-- Contenedor secundario -->
+    <div class="proyectos flex-center">
+        <h1 class="primary-font color2">Mis proyectos</h1>
+        <!-- Contenedor imagenes -->
+        <div class="grid">
+            <div *ngFor="let project of projects" class="flex-center">
+                <!-- Contenedor de imagen -->
+                <div class="card">
+                    <img [src]="imgsProject(project.id_proyecto, images).link" class="img">
+                    <div class="content flex-center">
+                        <h2 class="color1 primary-font">{{project.name}}</h2>
+                        <h3 class="color1 secondary-font">{{project.description}}</h3>
+                    </div>
+                    <!-- Contenedor de botones -->
+                    <div class="buttons flex-center">
+                        <button class="link color1"><fa-icon [icon]="faArrowUpRightFromSquare"></fa-icon></button>
+                        <button class="github color1"><fa-icon [icon]="faGithub"></fa-icon></button>
+                    </div>
+                </div> 
+            </div>               
+        </div>
+    </div>
+</div>

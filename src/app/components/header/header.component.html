@@ -1,0 +1,23 @@
+<!-- Contenedor principal -->
+<div class="container" *ngIf="infoUser">
+    <!-- Primer contenedor secundario -->
+    <div class="left-side flex-center">
+        <!-- Contenedor de imagen -->
+        <div class="img-container flex-center">
+            <img [src]="infoUser.photo" class="img">
+        </div>
+    </div>
+    <!-- Segundo contenedor secundario -->
+    <div class="right-side flex-center"> 
+        <h3>Hola, soy {{infoUser.name}}</h3>
+        <h1>{{infoUser.title}}</h1>
+        <!-- Contenedor de redes -->
+        <div class="redes" alt="Redes sociales">
+            <ul>
+                <li class="linkedin" title="linkedin"><a href=""><fa-icon [icon]="faLinkedin"></fa-icon></a></li>
+                <li class="instagram" title="instagram"><a href=""><fa-icon [icon]="faInstagram"></fa-icon></a></li>
+                <li class="github" title="github"><a href=""><fa-icon [icon]="faGithub"></fa-icon></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<!-- Contendor principal -->
+<div class="container">
+    <!-- Primer contendor secundario -->
+    <div class="seccion">
+        <!-- Cabecera -->
+        <div class="header">
+            <h1 class="primary-font">Panel de edición</h1>
+            <button class="primary-font btn-header" (click)="goBack()" title="Volver atras"><fa-icon [icon]="faArrowLeftLong"></fa-icon></button>
+        </div>
+        <!-- Formulario -->
+        <div class="formulario">
+            <form [formGroup]="projectForm" (ngSubmit)="formSubmit($event, 'project', projectForm)"
+            class="project">
+                <div class="field row1 col1">
+                    <div>
+                        <label for="name" class="primary-font">Nombre del proyecto</label>
+                        <input type="text" formControlName="name" name="name">
+                    </div>
+                </div>
+                <div class="field row1 col2">
+                    <div>
+                        <label for="end_date" class="primary-font">Fecha de finalización</label>
+                        <input type="text" formControlName="end_date" name="end_date">
+                    </div>
+                </div>
+                <div class="field row2 col2">
+                    <div>
+                        <label for="photos" class="primary-font">Cargar imagenes del proyecto</label>
+                        <input type="file" name="photos" (change)="selectFile($event)" accept="image/jpg, image/png, image/jpeg"
+                        placeholder="Agregar imagen" multiple>
+                    </div>
+                </div>
+                <div class="field row2 col1">
+                    <div>
+                        <label for="description" class="primary-font">Descripcción</label>
+                        <textarea name="description"rows="3" type="text" formControlName="description"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn secondary-font row3 col1">Guardar</button>
+            </form>  
+        </div>
+    </div>
+    <!-- Secundario contendor secundario -->
+    <div class="seccion">
+        <h1 class="primary-font">Imagenes del proyecto</h1>
+        <!-- Contendor de imagenes -->
+        <div class="grid">
+            <div class="img-container" *ngFor="let photo of images">
+                <img [src]="photo.link" class="img">
+                <button class="btn-x xMark" type="button" 
+                (click)="deleteImg(photo.name, photo.id_photoProject)"
+                matTooltip="Borrar imagen"
+                matTooltipPosition="below">
+                    <fa-icon [icon]="faTrash"></fa-icon>
+                </button>
+            </div> 
+        </div>
+    </div>
+</div>

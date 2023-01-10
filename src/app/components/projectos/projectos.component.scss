@@ -1,0 +1,143 @@
+// Estilos para contenedores, imagenes y botones
+.container{
+    background: var(--primary-color);
+    height: 100%;
+    padding: 100px 80px;
+}
+
+.container2{
+    height: auto;
+}
+
+.proyectos{
+    row-gap: 50px;
+    flex-direction: column;
+    padding: 100px;
+    height: auto;
+    width: 100%;
+    border-width: 30px;
+    border-style: solid;
+    border-image:linear-gradient(-40deg,
+                    var(--third-color) 10%, 
+                    transparent 20% 80%,
+                    var(--fourth-color) 90%
+                ) 1;
+                
+}
+
+.card{
+    width: 100%;
+    height: 500px;
+    background: var(--secondary-color);
+    border-radius: 8px;
+    text-align: center;
+    overflow: hidden;
+    transition: all 0.25s;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+}
+
+.grid{
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.img{
+    width:100%;
+    height:40%;
+}
+
+.buttons{
+    width: 100%;
+    height: 13%;
+    justify-content: space-evenly;
+    padding: 20px 0;
+}
+
+.content{
+    width: 100%;
+    height: 47%;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.link, .github{
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 30px;
+}
+
+// Estilos para los textos
+h1, h2, label{
+    font-weight: 500;
+}
+
+h1{
+    font-size: 100px;
+    max-width: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+h2{
+    font-size: 25px;
+}
+
+h3{
+    font-size: 17px;
+}
+
+h4{
+    font-size: 10px;
+}
+
+h3, h4{
+    font-weight: 100;
+}
+
+.proyectos h1{
+    line-height: 100%;
+    overflow-wrap: break-word
+}
+
+.card h1,.card h2,.card h3,.card h4{
+    max-width: 100% ;
+    max-height: 100%;
+}
+
+//Responsive design
+@media screen and (max-width: 841px){
+    .container{
+        flex-direction: column!important;
+        width: 100% !important;
+        padding: 50px!important;
+        max-width: 100%!important;
+    }
+
+    .proyectos{
+        height: auto!important;
+        width: 100% !important;
+        border-width: 10px!important;
+        padding: 50px!important; 
+        max-width: 100%!important;
+    }
+
+    h1{
+        font-size: 80px!important;
+    }
+
+    .grid{
+        display: flex!important;
+        justify-content:center!important;
+        flex-direction: column!important;
+        gap: 0px!important;
+        row-gap: 30px!important;
+    }
+
+    .card{
+        height: auto!important;
+    }
+}

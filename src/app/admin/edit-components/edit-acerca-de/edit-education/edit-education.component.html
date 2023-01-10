@@ -1,0 +1,48 @@
+<!-- Contenedor principal -->
+<div class="container" [ngClass]="{'auto': educationForm.get('inst_brand')?.value != ''}">
+    <!-- Contenedor secundario -->
+    <div class="seccion">
+        <!-- Cabecera -->
+        <div class="header">
+            <h1 class="primary-font">Panel de edición</h1>
+            <button class="primary-font btn-header" (click)="goBack()" title="Volver atras"><fa-icon [icon]="faArrowLeftLong"></fa-icon></button>
+        </div>
+        <!-- Formulario -->
+        <div class="formulario">
+            <form  [formGroup]="educationForm"  (ngSubmit)="formSubmit($event, 'education', educationForm)">
+                <div class="field row1 col1">
+                    <div>
+                        <label for="title" class="primary-font">Título</label>
+                        <input type="text" formControlName="title" name="title">
+                    </div>
+                </div>
+                <div class="field row1 col2">
+                    <div>
+                        <label for="institution" class="primary-font">Institución</label>
+                        <input type="text" formControlName="institution" name="institution">
+                    </div>
+                </div>
+                <div class="field row1 col3">
+                    <div>
+                        <label for="period" class="primary-font">Periodo</label>
+                        <input type="text" formControlName="period" name="period">
+                    </div>
+                </div>
+                <div class="row2 col14 subir-img">
+                    <div class="flex-center row1 col1">
+                        <div>
+                            <label for="inst_brand" class="primary-font">Subir imagen de institución</label>
+                            <input type="file" name="inst_brand" (change)="selectFile($event)" accept=".jpg, .jpeg, .png"
+                            [disabled]="educationForm.get('inst_brand')?.value != '' ">
+                        </div>
+                    </div>
+                    <div class="img-container row1 col2">
+                        <img [src]="educationForm.get('inst_brand')?.value" class="img">
+                        <button type="button" (click)="deleteImg()" class="btn-x xMark"><fa-icon [icon]="faTrash"></fa-icon></button>
+                    </div>
+                </div>
+                <button type="submit" class="secondary-font btn row3 col1">Guardar</button>
+            </form> 
+        </div>
+    </div>
+</div>

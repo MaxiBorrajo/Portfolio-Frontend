@@ -1,0 +1,452 @@
+//Estilos de contenedores principales
+.container-grid{
+    display: grid;
+    height: auto;
+    background: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    width: 100%;
+    position: relative;
+}
+
+.info, .edu, .exp, .skill{
+    position: relative;
+    width: 100%;
+}
+
+.info, .exp{
+    background: var(--primary-color);
+}
+
+.bg-primary{
+    background: var(--primary-color) !important;
+    color: var(--secondary-color) !important;
+}
+
+.bg-secondary{
+    background: var(--secondary-color) !important;
+    color: var(--primary-color) !important;
+}
+
+.info{
+    padding: 100px 80px;
+}
+
+.edu, .skill{
+    background: var(--secondary-color);
+    padding: 100px 80px 100px 80px;
+}
+
+.exp{
+    padding: 100px 80px 100px 80px;
+}
+
+.info-inside, .exp-inside, .edu-inside, .skill-inside{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: center;
+}
+
+.info-inside{
+    padding: 100px;
+    border-width: 30px;
+    border-style: solid;
+    border-image:linear-gradient(-40deg,
+                    var(--third-color) 10%, 
+                    transparent 20% 80%,
+                    var(--fourth-color) 90%
+                ) 1;
+}
+
+.edu-inside{
+    padding: 100px;
+    row-gap: 40px;
+    border-width: 30px;
+    border-style: solid;
+    border-image:linear-gradient(40deg,
+                    var(--fourth-color) 10%, 
+                    transparent 20% 80%,
+                    var(--third-color) 90%
+                ) 1;
+}
+
+.exp-inside{
+    padding: 100px;
+    row-gap: 40px;
+    border-width: 30px;
+    border-style: solid;
+    border-image:linear-gradient(-40deg,
+                    var(--fourth-color) 10%, 
+                    transparent 20% 80%,
+                    var(--third-color) 90%
+                ) 1;
+}
+
+.skill-inside{
+    row-gap: 50px;
+    padding: 100px;
+    border-width: 30px;
+    border-style: solid;
+    border-image:linear-gradient(40deg,
+                    var(--third-color) 10%, 
+                    transparent 20% 80%,
+                    var(--fourth-color) 90%
+                ) 1;
+}
+
+.brand{
+    width:15%;
+    margin: 0 0 2.5% 0;
+}
+
+.inst{
+    display: flex;
+    width: 100%;
+    column-gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider{
+    width: 100%;
+    margin-top: 50px;
+}
+
+.lines{
+    width: 90%;
+    position: relative;
+}
+
+.lines::after,.lines::before{
+    content: "";
+    position: absolute;
+    margin: auto;
+    height: 2px;
+    width: 45%;
+    top:45%
+}
+
+.edu-inside .lines::after{
+    left: 0;
+    background: var(--fourth-color);
+}
+
+.edu-inside .lines::before{
+    right:0;
+    background: var(--third-color);
+}
+
+.exp-inside .lines::after{
+    left: 0;
+    background: var(--third-color);
+}
+
+.exp-inside .lines::before{
+    right:0;
+    background: var(--fourth-color);
+}
+
+.edu-inside .square{
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid var(--fourth-color);
+    border-left: 2px solid var(--third-color);
+    border-bottom: 2px solid var(--third-color);
+    border-right: 2px solid var(--fourth-color);
+    left: 0;
+    top:0;
+    right:0;
+    bottom: 0;
+    margin: auto;
+    transform: rotate(45deg);
+}
+
+.exp-inside .square{
+    width: 25px;
+    height: 25px;
+    border-top: 2px solid var(--third-color);
+    border-left: 2px solid var(--fourth-color);
+    border-bottom: 2px solid var(--fourth-color);
+    border-right: 2px solid var(--third-color);
+    left: 0;
+    top:0;
+    right:0;
+    bottom: 0;
+    margin: auto;
+    transform: rotate(45deg);
+}
+
+.relative{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+}
+
+.percentage{
+    position: absolute;
+    text-align: center;
+    top: 53%;
+}
+
+.grid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
+//Estilos de texto
+.relative h2{
+    font-weight: 100;
+}
+
+.relative h4{
+    font-size: 50px;
+}
+
+h1, h2, label{
+    font-weight: 500;
+}
+
+h1{
+    font-size: 100px;
+}
+
+h2{
+    font-size: 30px;
+}
+
+h3{
+    font-size: 20px;
+}
+
+h4{
+    font-size: 20px;
+}
+
+h3, h4{
+    font-weight: 100;
+}
+
+h1{
+    line-height: 100%;
+    max-width: 100%;
+    width: 100%;
+}
+
+.edu h1, .exp h1{
+    overflow-wrap: break-word;
+}
+
+.info h2{
+    margin-top: 50px;
+}
+
+.edu h2{
+    margin-top: 40px;
+}
+
+.exp h1{
+    line-height: 100%;
+}
+
+.primary-font{
+    font-family: 'Playfair Display', serif;
+}
+
+.secondary-font{
+    font-family: 'Nunito', sans-serif;
+}
+
+//Estilos responsive design
+@media screen and (max-width: 841px){
+
+    h1{
+        font-size: 80px!important;
+    }
+    .container-grid{
+        display: flex!important;
+        flex-direction: column!important;
+        width: 100% !important;
+        overflow: hidden;
+    }
+
+    .edu-inside{
+        padding: 50px!important;
+        row-gap: 40px;
+        border-width: 10px!important;
+        border-style: solid;
+        border-image:linear-gradient(40deg,
+                        var(--fourth-color) 10%, 
+                        transparent 20% 80%,
+                        var(--third-color) 90%
+                    ) 1;
+    }
+    
+    .exp-inside{
+        padding: 50px!important;
+        row-gap: 40px;
+        border-width: 10px!important;
+        border-style: solid;
+        border-image:linear-gradient(-40deg,
+                        var(--fourth-color) 10%, 
+                        transparent 20% 80%,
+                        var(--third-color) 90%
+                    ) 1;
+    }
+    
+    .skill-inside{
+        row-gap: 50px;
+        padding: 50px!important;
+        border-width: 10px!important;
+        border-style: solid;
+        border-image:linear-gradient(40deg,
+                        var(--third-color) 10%, 
+                        transparent 20% 80%,
+                        var(--fourth-color) 90%
+                    ) 1;
+    }
+
+    .info-inside{
+        padding: 50px!important;
+        border-width: 10px!important;
+        border-style: solid;
+        border-image:linear-gradient(-40deg,
+                        var(--third-color) 10%, 
+                        transparent 20% 80%,
+                        var(--fourth-color) 90%
+                    ) 1;
+    }
+
+    .info, .edu, .exp, .skill{
+        height: auto!important;
+        width: 100% !important;
+    }
+
+    .info-inside, .exp-inside, .edu-inside, .skill-inside{
+        height: auto!important;
+        width: 100% !important;
+    }
+    .info{
+        padding: 50px!important;
+    }
+    
+    .edu, .skill{
+        padding: 50px!important;
+    }
+    
+    .exp{
+        padding: 50px!important;
+    }
+
+    .brand{
+        width: 100% !important;
+        margin: 0 0 2.5% 0;
+    }
+    
+    .inst{
+        display: flex;
+        width: 100%;
+        column-gap: 20px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    .divider{
+        width: 100%;
+        margin-top: 50px;
+    }
+    .lines{
+        width: 90%;
+        position: relative;
+    }
+    
+    .lines::after,.lines::before{
+        content: "";
+        position: absolute;
+        margin: auto;
+        height: 2px;
+        width: 35%!important;
+        top:45%;
+    }
+    
+    .edu-inside .lines::after{
+        left: 0;
+        background: var(--fourth-color);
+    }
+    
+    .edu-inside .lines::before{
+        right:0;
+        background: var(--third-color);
+    }
+    
+    .exp-inside .lines::after{
+        left: 0;
+        background: var(--third-color);
+    }
+    
+    .exp-inside .lines::before{
+        right:0;
+        background: var(--fourth-color);
+    }
+    
+    .edu-inside .square{
+        width: 25px;
+        height: 25px;
+        border-top: 2px solid var(--fourth-color);
+        border-left: 2px solid var(--third-color);
+        border-bottom: 2px solid var(--third-color);
+        border-right: 2px solid var(--fourth-color);
+        left: 0;
+        top:0;
+        right:0;
+        bottom: 0;
+        margin: auto;
+        transform: rotate(45deg);
+    }
+    
+    .exp-inside .square{
+        width: 25px;
+        height: 25px;
+        border-top: 2px solid var(--third-color);
+        border-left: 2px solid var(--fourth-color);
+        border-bottom: 2px solid var(--fourth-color);
+        border-right: 2px solid var(--third-color);
+        left: 0;
+        top:0;
+        right:0;
+        bottom: 0;
+        margin: auto;
+        transform: rotate(45deg);
+    }
+    
+    .relative{
+        position: relative;
+        height: 100%;
+        width: 100%;
+        text-align: center;
+        flex-direction: column;
+    }
+    
+    .relative h2{
+        font-weight: 100;
+    }
+    
+    .relative h4{
+        font-size: 50px;
+    }
+    
+    .percentage{
+        top:52.5%!important;
+    }
+
+    .grid{
+        display: flex!important;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}

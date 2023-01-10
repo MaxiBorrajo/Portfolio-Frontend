@@ -1,0 +1,34 @@
+<!-- Contenedor principal -->
+<div class="container">
+    <!-- Contenedor secundario -->
+    <div class="seccion">
+        <!-- Cabecera -->
+        <div class="header">
+            <h1 class="primary-font">Panel de edición</h1>
+            <button class="primary-font btn-header" (click)="goBack()" title="Volver atras"><fa-icon [icon]="faArrowLeftLong"></fa-icon></button>
+        </div>
+         <!-- Formulario -->
+        <div class="formulario">
+            <form  [formGroup]="skillForm"  (ngSubmit)="formSubmit($event, 'skill', skillForm)">
+                <div class="field row1 col1">
+                    <div>
+                        <label for="skill" class="primary-font">Nombre de la skill</label>
+                        <input type="text" formControlName="skill" name="skill">
+                    </div>
+                </div>
+                <div class="field row1 col2">
+                    <div>
+                        <label for="percentage" class="primary-font">Porcentaje</label>
+                        <input type="text" formControlName="percentage" name="percentage">
+                    </div>
+                </div>
+                <button type="submit" class="secondary-font btn row2 col1"
+                [disabled]="devolverControl('percentage', skillForm)?.errors 
+                && devolverControl('percentage', skillForm)?.touched" 
+                [ngClass]="{'invalid':
+                devolverControl('percentage', skillForm)?.errors 
+                && devolverControl('percentage', skillForm)?.touched}">Guardar</button>
+            </form> 
+        </div>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+<!-- Contenedor principal -->
+<div class="container-grid" *ngIf="infoUser">
+    <!-- Contenedor de información de usuario -->
+    <div *ngIf="infoUser != undefined" class="info row1 col1 color2 flex-center">
+        <!-- Contenedor secundario de información de usuario -->
+        <div class="info-inside">
+            <h1 class="primary-font">Sobre mi</h1>
+            <h2 class="secondary-font"> Soy <span class="primary-font color3 bold">{{infoUser.name}} {{infoUser.last_name}}</span>,<br>
+            <span class="primary-font color4 bold">{{infoUser.title}}</span> 
+            y te cuento un poco sobre mi: </h2>
+            <h4 class="secondary-font">{{infoUser.description}}</h4>
+        </div>
+    </div>
+    <!-- Contenedor de educación de usuario -->
+    <div *ngIf="educationUser.length > 0" class="edu row2 col1 color1 flex-center">
+        <!-- Contenedor secundario de educación de usuario -->
+        <div class="edu-inside">
+            <h1 class="primary-font">Mis estudios</h1>
+            <div *ngFor="let edu of educationUser">
+                <h2 class="primary-font">Tengo un título/certificado de: {{edu.title}}</h2>
+                <div class="inst">
+                    <h3 class="secondary-font"><b>Institución:</b> {{edu.institution}}</h3>
+                    <img [src]="edu.inst_brand" class="brand">
+                </div>
+                <h4 class="secondary-font"><b>Periodo:</b> {{edu.period}}</h4>
+                <!-- Separador -->
+                <div class="divider flex-center">
+                    <div class="lines">
+                        <div class="square"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contenedor de experiencias laborales de usuario -->
+    <div *ngIf="expUser.length > 0" class="exp row3 col1 color2 flex-center"
+        [ngClass]="{'bg-secondary': educationUser.length <= 0}">
+        <!-- Contenedor secundario de experiencias laborales de usuario -->
+        <div class="exp-inside">
+            <h1 class="primary-font">Mi experiencias laborales</h1>
+            <div *ngFor="let exp of expUser">
+                <h2 class="primary-font">Trabajé/o en {{exp.workplace}} de {{exp.job}}</h2>
+                <h3 class="secondary-font"><b>Actos realizados:</b> <p>{{exp.acts_perform}}</p></h3>
+                <h4 class="secondary-font"><b>Periodo:</b> {{exp.period}}</h4>
+                <!-- Separador -->
+                <div class="divider flex-center">
+                    <div class="lines">
+                        <div class="square"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contenedor de habilidade del usuario -->
+    <div *ngIf="skills.length > 0" class="skill row4 col1 color1 flex-center"
+        [ngClass]="{'bg-primary':(expUser.length <= 0 && educationUser.length > 0)
+    || (educationUser.length <= 0 && expUser.length > 0)}">
+        <!-- Contenedor secundario de habilidades del usuario -->
+        <div class="skill-inside">
+            <h1 class="primary-font">Hard & soft skills</h1>
+            <div class="grid">
+                <div class="relative flex-center" *ngFor="let skill of skills">
+                    <h2 class="secondary-font">{{skill.skill}}</h2>
+                    <mat-progress-spinner
+                    [value]="skill.percentage"
+                    diameter="170">
+                    </mat-progress-spinner>
+                    <h4 class="percentage primary-font">{{skill.percentage}}%</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

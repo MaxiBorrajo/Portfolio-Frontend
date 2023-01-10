@@ -1,0 +1,32 @@
+<!-- Menu desplegable -->
+<p class="toggle-menu" (click)="openMenu()"><fa-icon [icon]="faBars"></fa-icon></p>
+<!-- Contenedor principal -->
+<div class="container flex-center" [ngClass]="{'container-home' : isCurrentUrl('home'),
+'openMenu':menu}">
+    <!-- Contenedor de logo -->
+    <div class="logo flex-center" [routerLink]="['']" (click)="openMenu()">
+        <img src="assets/APLogo-20-20.png">
+    </div>
+    <!-- Barra de navegación -->
+    <div class="navegacion flex-center">
+        <ul>
+            <li class="secondary-font"
+            (click)="navigate('acerca-de')" [ngClass]="{'isActived' : isCurrentUrl('acerca-de'), 'li-home' : isCurrentUrl('home')}">ACERCA DE MI</li>
+            <li class="secondary-font"
+            (click)="navigate('projectos')" [ngClass]="{'isActived' : isCurrentUrl('projectos'), 'li-home' : isCurrentUrl('home')}">PROJECTOS</li>
+            <li class="secondary-font"
+            (click)="navigate('contacto')" [ngClass]="{'isActived' : isCurrentUrl('contacto'), 'li-home' : isCurrentUrl('home')}"
+            *ngIf="!isLoggedIn()">CONTACTO</li>
+        </ul>
+    </div>
+    <!-- Boton de login o logout -->
+    <div class="login flex-center" *ngIf="!isLoggedIn();else btnlogout">
+        <button class="btn secondary-font btn-login" [routerLink]="['login']" (click)="openMenu()">LOGIN</button>
+    </div>
+    <ng-template #btnlogout>
+        <div class="logout flex-center">
+            <button class="btn secondary-font" (click)="logout()">LOGOUT</button>
+            <p class="secondary-font color2">{{username || getUsername()}}</p>
+        </div>
+    </ng-template>  
+</div>

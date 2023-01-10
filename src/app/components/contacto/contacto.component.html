@@ -1,0 +1,47 @@
+<!-- Contenedor principal -->
+<div class="container color2">
+    <!-- Contenedor secundario -->
+    <div class="contacto flex-center">
+        <h1 class="primary-font">Contáctame</h1>
+        <!-- Formulario -->
+        <form [formGroup]="contactForm" (ngSubmit)="enviarCorreo($event)">
+            <div class="field row1 col1">
+                <input type="email" formControlName="fromEmail" name="fromEmail"
+                class="secondary-font" placeholder="Escribe tu email" required>
+                <div class="text-danger primary-font" *ngIf="devolverControl('fromEmail')?.errors?.['required'] &&
+                devolverControl('fromEmail')?.touched">
+                    Un email es requerido
+                </div>
+                <div class="text-danger primary-font" *ngIf="devolverControl('fromEmail')?.errors?.['email']">
+                    El mail escrito es invalido
+                </div>
+            </div>
+            <div class="field row1 col2">
+                <input type="text" formControlName="name" name="name"
+                class="secondary-font" placeholder="Escribe tu nombre" required>
+                <div class="text-danger primary-font" *ngIf="devolverControl('name')?.errors?.['required'] &&
+                devolverControl('name')?.touched">
+                    Un nombre es requerido
+                </div>
+            </div>
+            <div class="field row1 col3">
+                <input type="text" formControlName="subject" name="subject"
+                class="secondary-font" placeholder="Escribe un asunto" required>
+                <div class="text-danger primary-font" *ngIf="devolverControl('subject')?.errors?.['required'] &&
+                devolverControl('subject')?.touched">
+                    Un asunto es requerido
+                </div>
+            </div>
+            <div class="field row2 col14">
+                <textarea name="body" rows="3" formControlName="body"
+                class="secondary-font" placeholder="Escribe un mensaje" required></textarea>
+                <div class="text-danger primary-font" *ngIf="devolverControl('body')?.errors?.['required'] &&
+                devolverControl('body')?.touched">
+                    Un mensaje es requerido
+                </div>
+            </div>
+            <button type="submit" class="btn primary-font row3 col1" [disabled]="!contactForm.valid"
+            [ngClass]="{'invalid' : !contactForm.valid}">Enviar</button>
+        </form>
+    </div>
+</div>

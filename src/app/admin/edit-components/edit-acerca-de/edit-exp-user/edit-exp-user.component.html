@@ -1,0 +1,43 @@
+<!-- Contenedor principal -->
+<div class="container">
+    <!-- Contenedor secundario -->
+    <div class="seccion">
+        <!-- Cabecera -->
+        <div class="header">
+            <h1 class="primary-font">Panel de edición</h1>
+            <button class="primary-font btn-header" (click)="goBack()" title="Volver atras"><fa-icon [icon]="faArrowLeftLong"></fa-icon></button>
+        </div>
+        <!-- Formulario -->
+        <div class="formulario">
+            <form [formGroup]="expUserForm" (ngSubmit)="formSubmit($event, 'exp_user', expUserForm)">
+                <div class="field row1 col1">
+                    <div>
+                        <label for="workplace" class="primary-font">Lugar de trabajo</label>
+                        <input type="text" formControlName="workplace" name="workplace">
+                    </div>
+                </div>
+                <div class="field row1 col2">
+                    <div>
+                        <label for="job" class="primary-font">Trabajo</label>
+                        <input type="text" formControlName="job" name="job">
+                    </div>
+                </div> 
+                <div class="field row1 col3" >
+                    <div>
+                        <label for="period" class="primary-font">Periodo</label>
+                        <input type="text" formControlName="period" name="period">
+                    </div>
+                </div>
+                <div class="field row2 col14">
+                    <div>
+                        <label for="acts_perform" class="primary-font">Actos realizados</label>
+                        <textarea name="acts_perform" rows="5"
+                        type="text" formControlName="acts_perform"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn row3 col1 secondary-font">Guardar</button>
+            </form> 
+        </div> 
+    </div>
+</div>
+ 
