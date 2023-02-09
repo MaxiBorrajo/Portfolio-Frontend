@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { faPenToSquare, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { ImageService } from 'src/app/services/image.service';
 import { InfoService } from 'src/app/services/info.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PhotoService } from 'src/app/services/photo.service';
@@ -24,8 +23,7 @@ export class EditProjectosComponent {
 
   //Constructor
   constructor(private formBuilder:FormBuilder, private infoService:InfoService,
-    private loginService:LoginService, private photoService:PhotoService,
-    private imgService:ImageService){
+    private loginService:LoginService, private photoService:PhotoService){
     this.projectForm = this.formBuilder.group({
       id_proyecto: [0],
       name: [''],
@@ -98,8 +96,11 @@ export class EditProjectosComponent {
       );
     }else{
       for(let photo of images){
-        const url = "projects/" + id + "/" + photo.name;
-        this.imgService.delete(url);
+        this.photoService.deletePhoto('photo', photo.id_photoProject).subscribe(
+          resp => {
+            console.log(resp)
+          }
+        )
       }
       this.infoService.deleteInfo(url, String(id)).subscribe(
         resp => {

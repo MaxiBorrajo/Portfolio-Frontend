@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import baserUrl from './helper';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -25,10 +26,29 @@ export class InfoService {
     return this.http.post(`${baserUrl}/` + url + `?username=` + username, info, {responseType: 'text'});
   }
 
+  public postPhotoInfo(url:string, username:string, file:any){
+    const formData = new FormData();
+    formData.append("multipartFile", file);
+    return this.http.post(`${baserUrl}/` + url + "/photo?username=" + username, formData, {responseType: 'text'});
+  }
+
+  public postPhotoInfoById(url:string, id:number, file:any){
+    const formData = new FormData();
+    formData.append("multipartFile", file);
+    return this.http.post(`${baserUrl}/` + url + "/photo?id=" + id, formData, {responseType: 'text'});
+  }
+
   public deleteInfo(url:string, parametro:string){
     //Metodo para eliminar información de la base de datos
     /*parametro ese el nombre de usuario cuando quiero eliminar infouser,
     para el resto es un id*/
     return this.http.delete(`${baserUrl}/` + url + `/` + parametro, {responseType: 'text'});
+  }
+
+  public deletePhotoInfo(url:string, parametro:string){
+    //Metodo para eliminar información de la base de datos
+    /*parametro ese el nombre de usuario cuando quiero eliminar infouser,
+    para el resto es un id*/
+    return this.http.delete(`${baserUrl}/` + url + `/photo/` + parametro, {responseType: 'text'});
   }
 }

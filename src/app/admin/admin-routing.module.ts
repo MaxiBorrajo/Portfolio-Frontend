@@ -15,7 +15,6 @@ const routes: Routes = [
       {path: 'edit-projectos', 
       loadChildren:() => import('./edit-components/edit-projectos/edit-projectos.module').then(m => m.EditProjectosModule),
       canActivate: [AdminGuard]},
-
     ]
   }
 ];

@@ -5,8 +5,8 @@
         <h1 class="primary-font">Editar información de usuario</h1>
         <!-- Formulario -->
         <div class="formulario">
-            <form [formGroup]="infoUserForm" (ngSubmit)="formSubmitInfo($event, 'info', infoUserForm)"
-            class="info-user" [ngClass]="{'with-image' : infoUserForm.get('photo')?.value != ''}">
+            <form [formGroup]="infoUserForm" (ngSubmit)="formSubmitInfo($event, 'info', infoUserForm)" class="info-user"
+                [ngClass]="{'with-image' : infoUserForm.get('photo')?.value != ''}">
                 <div class="field row1 col1">
                     <div>
                         <label for="name" class="primary-font">Nombre</label>
@@ -16,7 +16,7 @@
                 <div class="field row1 col2">
                     <div>
                         <label for="last_name" class="primary-font">Apellido</label>
-                        <input type="text" formControlName="last_name" name="last_name">  
+                        <input type="text" formControlName="last_name" name="last_name">
                     </div>
                 </div>
                 <div class="field row1 col3">
@@ -25,32 +25,30 @@
                         <input type="text" formControlName="title" name="title">
                     </div>
                 </div>
-                <div class="row2 col14 img-container">
+                <form enctype="multipart/form-data" novalidate
+                    class="row2 col14 img-container">
                     <div class="row1 col1 flex-center">
                         <div>
                             <label for="photo" class="primary-font">Subir imagen de perfil</label>
                             <input type="file" name="photo" (change)="selectInfoFile($event)" accept=".jpg, .jpeg, .png"
-                            [disabled]="infoUserForm.get('photo')?.value != '' ||
-                            infoUserForm.get('photo')?.value != null ||
-                            infoUserForm.get('photo')?.value != undefined">
+                                [disabled]="infoUserForm.get('photo')?.value != '' &&
+                                            infoUserForm.get('photo')?.value != null">
                         </div>
                     </div>
-                    <div class="row1 col2 img" *ngIf="infoUserForm.get('photo')?.value != '' ||
-                    infoUserForm.get('photo')?.value != null ||
-                    infoUserForm.get('photo')?.value != undefined">
+                    <div class="row1 col2 img" *ngIf="infoUserForm.get('photo')?.value != '' &&
+                        infoUserForm.get('photo')?.value != null">
                         <img class="img-info" [src]="infoUserForm.get('photo')?.value">
-                        <button class="btn-x xMark" type="button" (click)="deleteInfoImg()"><fa-icon [icon]="faTrash"></fa-icon></button>
+                        <button class="btn-x xMark" type="button" (click)="deleteInfoImg()"><fa-icon
+                                [icon]="faTrash"></fa-icon></button>
                     </div>
-                </div>
+                </form> 
                 <div class="field row3 col14">
                     <div>
                         <label for="description" class="primary-font">Descripcción</label>
-                        <textarea name="description" rows="3"
-                        type="text" formControlName="description"></textarea>
+                        <textarea name="description" rows="3" type="text" formControlName="description"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn secondary-font row4 col1"
-                [disabled]="selectedInfoFile == undefined &&
+                <button type="submit" class="btn secondary-font row4 col1" [disabled]="selectedInfoFile == undefined &&
                 infoUserForm.get('photo')?.value == ''" [ngClass]="{'invalid': selectedInfoFile == undefined
                 && infoUserForm.get('photo')?.value == ''}">Subir</button>
             </form>
@@ -59,22 +57,21 @@
     <!-- Contenedor de experiencias laboral de usuario -->
     <div class="seccion">
         <h1 class="primary-font">Mi experiencias laborales</h1>
-        <div *ngIf="expUser != []" >
+        <div *ngIf="expUser != []">
             <div *ngFor="let exp of expUser" class="p-exp">
                 <div class="header">
                     <h2 class="primary-font">Trabajé/o en {{exp.workplace}} de {{exp.job}}</h2>
                     <div class="botones">
-                        <button class="btn-header"
-                        routerLink="edit-exp-user/{{exp.id_ExpUser}}">
+                        <button class="btn-header" routerLink="edit-exp-user/{{exp.id_ExpUser}}">
                             <fa-icon [icon]="faPenToSquare"></fa-icon>
                         </button>
-                        <button class="btn-header"
-                        (click)="deleteExpUser('exp_user', exp.id_ExpUser)">
+                        <button class="btn-header" (click)="deleteExpUser('exp_user', exp.id_ExpUser)">
                             <fa-icon [icon]="faTrash"></fa-icon>
                         </button>
                     </div>
                 </div>
-                <h3 class="secondary-font">Actos realizados: <p>{{exp.acts_perform}}</p></h3>
+                <h3 class="secondary-font">Actos realizados: <p>{{exp.acts_perform}}</p>
+                </h3>
                 <h4 class="secondary-font">Periodo: {{exp.period}}</h4>
                 <div class="divider flex-center">
                     <div class="lines">
@@ -88,8 +85,7 @@
         <h1 class="primary-font">Agregar nueva experiencia laboral</h1>
         <!-- Formulario -->
         <div class="formulario">
-            <form [formGroup]="expUserForm" (ngSubmit)="formSubmit($event, 'exp_user', expUserForm, expUser)"
-            class="exp-user">
+            <form [formGroup]="expUserForm" (ngSubmit)="formSubmit('exp_user', expUserForm)" class="exp-user">
                 <div class="field row1 col1">
                     <label for="workplace" class="primary-font">Lugar de trabajo</label>
                     <input type="text" formControlName="workplace" name="workplace">
@@ -97,19 +93,19 @@
                 <div class="field row1 col2">
                     <label for="job" class="primary-font">Trabajo</label>
                     <input type="text" formControlName="job" name="job">
-                </div> 
-                <div class="field row1 col3" >
+                </div>
+                <div class="field row1 col3">
                     <label for="period" class="primary-font">Periodo</label>
                     <input type="text" formControlName="period" name="period">
                 </div>
                 <div class="field row2 col14">
                     <label for="acts_perform" class="primary-font">Actos realizados</label>
-                    <textarea name="acts_perform" rows="3"
-                    type="acts_perform" formControlName="acts_perform"></textarea>
+                    <textarea name="acts_perform" rows="3" type="acts_perform"
+                        formControlName="acts_perform"></textarea>
                 </div>
                 <button type="submit" class="btn row3 col1 secondary-font">Subir</button>
-            </form> 
-        </div> 
+            </form>
+        </div>
     </div>
     <!-- Contenedor de estudios de usuario -->
     <div class="seccion">
@@ -119,16 +115,17 @@
                 <div class="header">
                     <h2 class="primary-font">Tengo un título/certificado de: {{edu.title}}</h2>
                     <div class="botones">
-                        <button class="btn-header"
-                        routerLink="edit-education-user/{{edu.id_EducationUser}}">
+                        <button class="btn-header" routerLink="edit-education-user/{{edu.id_EducationUser}}">
                             <fa-icon [icon]="faPenToSquare"></fa-icon>
                         </button>
                         <button class="btn-header"
-                        (click)="deleteEducationUser('education', edu.id_EducationUser)"><fa-icon [icon]="faTrash"></fa-icon></button>
+                            (click)="deleteEducationUser('education', edu.id_EducationUser)"><fa-icon
+                                [icon]="faTrash"></fa-icon></button>
                     </div>
                 </div>
                 <div *ngIf="edu.inst_brand == '';else imagen">
-                    <p class="secondary-font color2">Para agregar el logo de la institución, apreta el boton de editar<p>
+                    <p class="secondary-font color2">Para agregar el logo de la institución, apreta el boton de editar
+                    <p>
                 </div>
                 <ng-template #imagen>
                     <div class="inst">
@@ -149,8 +146,7 @@
         <h1 class="primary-font">Agregar nuevo estudio</h1>
         <!-- Formulario -->
         <div class="formulario">
-            <form [formGroup]="educationForm" (ngSubmit)="formSubmit($event, 'education', educationForm, educationUser)"
-            class="edu-user">
+            <form [formGroup]="educationForm" (ngSubmit)="formSubmit('education', educationForm)" class="edu-user">
                 <div class="field row1 col1">
                     <div>
                         <label for="title" class="primary-font">Título</label>
@@ -170,7 +166,7 @@
                     </div>
                 </div>
                 <button type="submit" class="secondary-font row2 col1 btn">Subir</button>
-            </form>   
+            </form>
         </div>
     </div>
     <!-- Contenedor de habilidades de usuario -->
@@ -182,12 +178,11 @@
                     <h2 class="primary-font">{{skill.skill}}</h2>
                     <h3 class="secondary-font">{{skill.percentage}}%</h3>
                     <div class="botones">
-                        <button class="btn-header"
-                        routerLink="edit-skill/{{skill.id_skill}}">
+                        <button class="btn-header" routerLink="edit-skill/{{skill.id_skill}}">
                             <fa-icon [icon]="faPenToSquare"></fa-icon>
                         </button>
-                        <button class="btn-header"
-                        (click)="deleteSkill('skill', skill.id_skill)"><fa-icon [icon]="faTrash"></fa-icon></button>
+                        <button class="btn-header" (click)="deleteSkill('skill', skill.id_skill)"><fa-icon
+                                [icon]="faTrash"></fa-icon></button>
                     </div>
                 </div>
             </div>
@@ -197,8 +192,7 @@
         <h1 class="primary-font">Agregar nueva skill</h1>
         <!-- Formulario -->
         <div class="formulario">
-            <form [formGroup]="skillForm" (ngSubmit)="formSubmit($event, 'skill', skillForm, skills)"
-            class="skill">
+            <form [formGroup]="skillForm" (ngSubmit)="formSubmit('skill', skillForm)" class="skill">
                 <div class="field row1 col1">
                     <div>
                         <label for="skill" class="primary-font">Nombre de la skill</label>
@@ -210,17 +204,15 @@
                         <label for="percentage" class="primary-font">Porcentaje</label>
                         <input type="number" formControlName="percentage" name="percentage" max="100" min="0">
                         <p *ngIf="devolverControl('percentage', skillForm)?.errors 
-                        && devolverControl('percentage', skillForm)?.touched"
-                        clas="secondary-font color2">El valor está fuera de rango, elige un valor entre 0 y 100</p>
+                        && devolverControl('percentage', skillForm)?.touched" clas="secondary-font color2">El valor
+                            está fuera de rango, elige un valor entre 0 y 100</p>
                     </div>
                 </div>
-                <button type="submit" class="secondary-font row2 col1 btn"
-                [disabled]="devolverControl('percentage', skillForm)?.errors 
-                && devolverControl('percentage', skillForm)?.touched" 
-                [ngClass]="{'invalid':
+                <button type="submit" class="secondary-font row2 col1 btn" [disabled]="devolverControl('percentage', skillForm)?.errors 
+                && devolverControl('percentage', skillForm)?.touched" [ngClass]="{'invalid':
                 devolverControl('percentage', skillForm)?.errors 
                 && devolverControl('percentage', skillForm)?.touched}">Subir</button>
-            </form>   
+            </form>
         </div>
     </div>
 </div>

@@ -21,9 +21,11 @@ export class PhotoService {
     return this.http.get(`${baserUrl}/` + url + '?id=' + id, {responseType: 'json'});
   }
 
-  public postPhoto(url:string, info:any, id:number){
+  public postPhoto(url:string, file:File, id_proyecto:number){
     //Metodo para guardar una foto de un proyecto en la base de datos
-    return this.http.post(`${baserUrl}/` + url + '?id=' + id, info, {responseType: 'text'});
+    const formData = new FormData();
+    formData.append("multipartFile", file);
+    return this.http.post(`${baserUrl}/` + url + '?id_proyecto=' + id_proyecto, formData, {responseType: 'text'});
   }
 
   public deletePhoto(url:string, id:number){

@@ -1,9 +1,8 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { faArrowLeftLong, faTrash, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { ImageService } from 'src/app/services/image.service';
 import { InfoService } from 'src/app/services/info.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PhotoService } from 'src/app/services/photo.service';
@@ -19,27 +18,26 @@ export class EditProjectComponent {
   faTrash = faTrash;
 
   //Atributos
-  projectForm:FormGroup;
-  id:number;
-  selectedFiles!:FileList;
-  images:any;
-  invalidImage:boolean = false;
-  selection:any;
+  projectForm: FormGroup;
+  id: number;
+  selectedFiles!: FileList;
+  images: any;
+  invalidImage: boolean = false;
+  selection: any;
 
   //Constructor
-  constructor(private formBuilder:FormBuilder, private infoService:InfoService,
-    private loginService:LoginService, private _router:Router, private _location:Location, private route:ActivatedRoute,
-    private imgService:ImageService, private photoService:PhotoService){
-      this.projectForm = this.formBuilder.group({
-        id_proyecto: [0],
-        name: [''],
-        description: [''],
-        end_date: [''],
-        link_page:[''],
-        link_git:[''],
-        userEntity:[null]
-      });
-      this.id = Number(route.snapshot.paramMap.get('id'));
+  constructor(private formBuilder: FormBuilder, private infoService: InfoService,
+    private loginService: LoginService, private _router: Router, private _location: Location, private route: ActivatedRoute, private photoService: PhotoService) {
+    this.projectForm = this.formBuilder.group({
+      id_proyecto: [0],
+      name: [''],
+      description: [''],
+      end_date: [''],
+      link_page: [''],
+      link_git: [''],
+      userEntity: [null]
+    });
+    this.id = Number(route.snapshot.paramMap.get('id'));
   }
 
   //Metodos
@@ -47,8 +45,8 @@ export class EditProjectComponent {
     this.cargarProject(this.id);
     this.cargarImagenes();
   }
-  
-  cargarProject(id:number){
+
+  cargarProject(id: number) {
     //Metodo para cagar un projecto segun un id
     this.infoService.getInfoById("project", id).subscribe(
       resp => {
@@ -68,7 +66,7 @@ export class EditProjectComponent {
     );
   }
 
-  formSubmit(event:Event, url:string, form:FormGroup){
+  formSubmit(event: Event, url: string, form: FormGroup) {
     //Metodo para editar el proyecto actual
     event.preventDefault();
     let username = this.loginService.getUser().username;
@@ -80,70 +78,70 @@ export class EditProjectComponent {
         console.log(error);
       }
     );
-    if(this.selectedFiles != undefined && this.selectedFiles != null){
+    if (this.selectedFiles != undefined && this.selectedFiles != null) {
       this.subirImagenes();
     }
-    setTimeout(() => {
-      this.goBack()
-    }, 3000);
   }
 
-  subirImagenes(){
+  subirImagenes() {
     //Metodo para subir varias imagenes a firebase
-    for(let file of this.selectedFiles){
+    for (let file of this.selectedFiles) {
       this.subirImagen(file);
+      this.cargarImagenes();
     }
   }
 
-  subirImagen(file:File){
+  subirImagen(file: File) {
     //Metodo para subir una imagen a firebase
-    this.imgService.uploadSingleImg('projects/' + this.id, file, file.name, this.id)
+    this.photoService.postPhoto('photo', file, this.projectForm.get('id_proyecto')?.value).subscribe(
+      resp => {
+        console.log(resp)
+      }
+    )
   }
 
-  getExtention(file:File){
+  getExtention(file: File) {
     //Metodo para obtener tipo de archivo de la imagen dada
-    if(file.type == "image/jpeg"){
+    if (file.type == "image/jpeg") {
       return '.jpeg'
-    }else if(file.type == "image/png"){
+    } else if (file.type == "image/png") {
       return '.png'
-    }else{
+    } else {
       return '.jpg'
     }
   }
 
-  selectFile(event:any){
+  selectFile(event: any) {
     //Metodo para obtener el archivo seleccionado en un input file
     this.selectedFiles = event.target.files;
     let i = 1;
     let limit = 2000000
-    while(i <= this.selectedFiles.length && this.selectedFiles[i-1].size < limit){
+    while (i <= this.selectedFiles.length && this.selectedFiles[i - 1].size < limit) {
       i++
     }
-    if(i <= this.selectedFiles.length){
+    if (i <= this.selectedFiles.length) {
       this.invalidImage = true;
-    }else{
+    } else {
       this.invalidImage = false;
     }
   }
 
-  cargarImagenes(){
+  cargarImagenes() {
     //Metodo para cargar las imagenes del proyecto actual
     this.photoService.getPhotosByIdProject('photo', this.id).subscribe(
       resp => {
         this.images = resp;
       }
-    ) 
+    )
   }
 
-  deleteImg(photo:string, id_photo:number){
+  deleteImg(id_photo: number) {
     //Metodo para borrar una imagen
-    const url = "projects/" + this.id + "/" + photo;
     this.photoService.deletePhoto('photo', id_photo).subscribe(
       resp => {
         this.cargarImagenes();
       },
-      err => {console.log(err)}
+      err => { console.log(err) }
     )
-    this.imgService.delete(url);
   }
 }

@@ -23,11 +23,23 @@
                         <input type="text" formControlName="end_date" name="end_date">
                     </div>
                 </div>
-                <div class="field row2 col2">
+                <form class="field row2 col2" enctype="multipart/form-data" novalidate>
                     <div>
                         <label for="photos" class="primary-font">Cargar imagenes del proyecto</label>
                         <input type="file" name="photos" (change)="selectFile($event)" accept="image/jpg, image/png, image/jpeg"
                         placeholder="Agregar imagen" multiple>
+                    </div>
+                </form>
+                <div class="field row3 col1">
+                    <div>
+                        <label for="name" class="primary-font">Link de la página</label>
+                        <input type="text" formControlName="link_page" name="link_page">
+                    </div>
+                </div>
+                <div class="field row3 col2">
+                    <div>
+                        <label for="end_date" class="primary-font">Link de github</label>
+                        <input type="text" formControlName="link_git" name="link_git">
                     </div>
                 </div>
                 <div class="field row2 col1">
@@ -36,7 +48,7 @@
                         <textarea name="description"rows="3" type="text" formControlName="description"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn secondary-font row3 col1">Guardar</button>
+                <button type="submit" class="btn secondary-font row4 col1">Guardar</button>
             </form>  
         </div>
     </div>
@@ -48,7 +60,7 @@
             <div class="img-container" *ngFor="let photo of images">
                 <img [src]="photo.link" class="img">
                 <button class="btn-x xMark" type="button" 
-                (click)="deleteImg(photo.name, photo.id_photoProject)"
+                (click)="deleteImg(photo.id_photoProject)"
                 matTooltip="Borrar imagen"
                 matTooltipPosition="below">
                     <fa-icon [icon]="faTrash"></fa-icon>

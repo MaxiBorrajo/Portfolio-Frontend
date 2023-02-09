@@ -15,7 +15,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
     CommonModule,
     AdminRoutingModule,
     EditAcercaDeModule,
-    EditProjectosModule,
+    EditProjectosModule
   ]
 })
 export class AdminModule { }

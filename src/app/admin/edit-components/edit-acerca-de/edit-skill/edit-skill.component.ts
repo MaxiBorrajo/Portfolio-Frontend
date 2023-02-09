@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { faArrowLeftLong, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ImageService } from 'src/app/services/image.service';
 import { InfoService } from 'src/app/services/info.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -22,8 +21,7 @@ export class EditSkillComponent {
 
   //Constructor
   constructor(private formBuilder:FormBuilder, private infoService:InfoService,
-    private loginService:LoginService, private _router:Router, private route:ActivatedRoute,
-    private imgService:ImageService){
+    private loginService:LoginService, private _router:Router, private route:ActivatedRoute){
       this.skillForm = this.formBuilder.group({
         id_skill: [0],
         skill: [''],
